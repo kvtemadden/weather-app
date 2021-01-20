@@ -1,0 +1,40 @@
+#title {
+    text-align: center;
+}
+
+.jumbotron {
+    background-color: #203333;
+    color: #fff;
+    border-radius: 0px;
+    margin-bottom: 0;
+}
+
+#sidebar {
+    height: 100vh;
+    background-color: #d8e6ea;
+    padding: 2rem 1rem;
+}
+
+.container {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 99vw;
+}
+
+.bg-secondary {
+padding: 6px .8rem;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+@media (min-width: 576px) {
+.jumbotron {
+    padding: 2rem 2rem;
+}
+}
