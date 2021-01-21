@@ -23,7 +23,7 @@
                 <form role="search" class="row p-3">
                     <label for="city-search">Search for a City:</label>
                     <input type="text" id="city-search" class="form-control col-10" placeholder="Search..."></input>
-                    <button type="button" class="col-2 btn btn-primary"><i class="fas fa-search"></i></button>
+                    <button type="button" class="col-2 btn btn-primary" id="search"><i class="fas fa-search"></i></button>
                 </form>
                 <div>
                     <ul>
@@ -32,14 +32,14 @@
                 </div>
             </aside>
             <section class="col-8 m-3">
-                <h3 class="show">Use the search bar on the left to search for the current weather forecast.</h3>
+                <h3 id="how-to-use">Use the search bar on the left to search for the current weather forecast.</h3>
                 <article class="card hide">
                 <div class="card-body">
-                    <h2 class="card-title"></h2><i id="currentIcon"></i>
-                    <p class="card-text" id="temp">Temperature:</p>
-                    <p class="card-text" id="humidity">Humidity:</p>
-                    <p class="card-text" id="wind-speed">Wind speed:</p>
-                    <p class="card-text" id="uv">UV index: <span class="badge bg-secondary">--</span></p>
+                    <h2 class="card-title"><span id="main-title"></span><img id="currentIcon" src=""/></h2>
+                    <p class="card-text">Temperature: <span id="temp"></span></p>
+                    <p class="card-text">Humidity: <span id="humidity"></span></p>
+                    <p class="card-text">Wind speed: <span id="wind-speed"></span></p>
+                    <p class="card-text">UV index: <span class="badge bg-secondary" id="uv">--</span></p>
                  </div>
                 </article>
                 <article class="mt-3 hide">
