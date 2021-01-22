@@ -25,6 +25,43 @@
 padding: 6px .8rem;
 }
 
+.bg-green {
+    padding: 6px .8rem;
+    background-color: rgb(138, 207, 70);
+    }
+
+.bg-yellow {
+    padding: 6px .8rem;
+    background-color: rgb(217, 248, 42);
+    }
+
+.bg-orange {
+    padding: 6px .8rem;
+    background-color: rgb(248, 183, 42);
+    }
+
+.bg-red {
+    padding: 6px .8rem;
+    background-color: rgb(238, 50, 50);
+    }
+
+.historyList {
+    list-style: none;
+    cursor: pointer;
+}
+
+.historyList:hover {
+    background: grey;
+}
+
+.card-body {
+    padding: .7rem;
+}
+
+ul {
+    padding-left: 0;
+}
+
 .hide {
     display: none;
 }
