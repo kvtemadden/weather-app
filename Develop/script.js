@@ -1,4 +1,5 @@
 $(document).ready(function () {
+//  All information used globally across script document
   var apiKey = "a99afdbd6713ff21bf81cee54d0392e4";
   var queryURL = "https://api.openweathermap.org/data/2.5/forecast?appid=" + apiKey;
   var cityName;
@@ -19,20 +20,21 @@ $(document).ready(function () {
 
 
   function weatherSearch() {
-    var city = $("#city-search");
-    queryURL = queryURL + "&q=" + city.val() + ",GB";
-    $.ajax({
+    var city = $("#city-search"); // getting search form
+    queryURL = queryURL + "&q=" + city.val() + ",GB"; // building search url
+    $.ajax({ //getting info from api via ajax
       url: queryURL,
       method: "GET"
     }).then(function (response) {
-      latitude = response.city.coord.lat;
+      latitude = response.city.coord.lat; 
       longitude = response.city.coord.lon;
       cityName = response.city.name;
-      uvIndex(response);
+      // running relevant functions
+      uvIndex(response); 
       todaysInfo(response);
       todaysContent(response);
-      console.log(response);
-
+      console.log(response); //logging api info
+      // getting information for all of the days
       var x = 0;
       for (i = 0; i < days.length; i++) {
         var day = days[x];
@@ -46,38 +48,42 @@ $(document).ready(function () {
         dateOther = dateOtherArray[2] + "/" + dateOtherArray[1] + "/" + dateOtherArray[0];
         iconOther = "http://openweathermap.org/img/w/" + response.list[day].weather[0].icon + ".png";
         x++;
-
+        // getting relevant 5 day forecast html
         var mainTitle = $("#day" + i);
         var tempDayInfo = $("#day" + i + "-t");
         var humidityDayInfo = $("#day" + i + "-h");
         var iconDayInfo = $("#day" + i + "-img");
-
+        // setting the weather info for the page
         mainTitle.text(dateOther);
         tempDayInfo.text(celsiusOther);
         humidityDayInfo.text(humidityOther);
         iconDayInfo.attr("src", iconOther);
         console.log("no crash");
       }
+      // resetting days for next use
       x = 0;
 
-
+      // resetting url for api call
       resetURL();
 
     });
   }
 
-  function uvIndex(response) {
+  // setting info for uv index
+  function uvIndex() {
+    // building api info from last api call
     var UVqueryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&appid=a99afdbd6713ff21bf81cee54d0392e4";
 
-    $.ajax({
+    $.ajax({ // api call
       url: UVqueryURL,
       method: "GET"
     }).then(function (uvResponse) {
-      console.log(uvResponse);
+      // getting uvi info and appending it to page
       var uvInd = uvResponse.current.uvi;
-      console.log(uvInd);
       var uvInfo = $("#uv");
       uvInfo.text(uvInd);
+      
+      // setting relevant colour depending on the extremity of uv index
       uvInfo.removeClass("bg-secondary");
 
       if (uvInd >= 0 && uvInd <= 2) {
@@ -98,32 +104,35 @@ $(document).ready(function () {
 
   }
 
+  // on click of search button
   $("#search").click(function (event) {
+    // prevent default action
     event.preventDefault();
+    // run these functions
     weatherSearch();
     showPageContent();
     saveSearch();
-    // updateSearchHistory();
     clearSearchField();
   });
 
 function clearSearchField() {
+  //clears the search field
   $("#city-search").val("");
 }
 
+// on click of search history item...
 $(document).on("click", "li", function (event) {
+  // run these functions
     event.preventDefault();
-    debugger;
-
     clearSearchField();
-    clickedLi = $(this).text();
+    clickedLi = $(this).text(); // gets text from list item
     clickedSearchHistory();
     showPageContent();
   });
 
   function clickedSearchHistory() {
-    queryURL = queryURL + "&q=" + clickedLi + ",GB";
-    $.ajax({
+    queryURL = queryURL + "&q=" + clickedLi + ",GB"; // builds api url
+    $.ajax({ // api call
       url: queryURL,
       method: "GET"
     }).then(function (response) {
@@ -168,6 +177,7 @@ $(document).on("click", "li", function (event) {
   }
 
   function todaysInfo(response) {
+    // gets info for today
     humidityToday = (response.list[0].main.humidity) + "%";
     windToday = (response.list[0].wind.speed) + " MPH";
     celsiusToday = (response.list[0].main.temp - 273.15).toFixed(2) + "°C";
@@ -187,8 +197,7 @@ $(document).on("click", "li", function (event) {
     var windInfo = $("#wind-speed");
     var humidityInfo = $("#humidity");
     var iconInfo = $("#currentIcon");
-    var uvInfo = $("#uv");
-
+    // sets text for above info
     mainInfo.text(cityName + " " + dateToday);
     tempInfo.text(celsiusToday);
     windInfo.text(windToday);
@@ -199,12 +208,15 @@ $(document).on("click", "li", function (event) {
   }
 
   function resetURL() {
+    // resets url
     queryURL = "https://api.openweathermap.org/data/2.5/forecast?appid=" + apiKey;
   }
 
+  // gets instructions
   var instructions = $("#how-to-use");
 
   function showPageContent() {
+    // hides the instructions and shows the weather information
     if (instructions.hasClass("show") == true) {
       var hidden = $(".hide");
       hidden.addClass("show");
@@ -215,19 +227,18 @@ $(document).on("click", "li", function (event) {
   }
 
   function saveSearch() {
-   
-    var cityName = $("#city-search").val();
-    debugger;
-    if (searchedCities.length == 7) {
-      searchedCities.shift();
+    var cityName = $("#city-search").val(); //gets user input
+    if (searchedCities.length == 7) { 
+      searchedCities.shift(); // maintains length of history to 7 options
     }
     
-    searchedCities.push(cityName);
+    searchedCities.push(cityName); //adds newest search to array
 
-    searchHistory = {
+    searchHistory = { // sets new object
       city: searchedCities,
     }
 
+    // sets to local storage
     var searchString = JSON.stringify(searchHistory);
       JSON.parse(searchString);
       localStorage.setItem("searchHistory", searchString);
@@ -235,34 +246,32 @@ $(document).on("click", "li", function (event) {
   }
 
   function prevSession() {
-    var ls = localStorage.getItem("searchHistory");
-    if (ls) {
-      searchHistory = JSON.parse(ls);
-      for (var i = 0; i < searchHistory.city.length; i++) {
+    var ls = localStorage.getItem("searchHistory"); //sets variable that gets info from local storage
+    if (ls) { // if previous search exists...
+      searchHistory = JSON.parse(ls); //makes info usable
+      for (var i = 0; i < searchHistory.city.length; i++) { // for all info in local storage...
         var current = searchHistory.city[i];
-        var savedLi = $("<li>" + current + "</li>");
-        if (searchedCities.length == 7) {
+        var savedLi = $("<li>" + current + "</li>"); // sets list item
+        if (searchedCities.length == 7) { // maintains history to 7
           searchedCities.shift();
         }
-        searchedCities.push(current);
-        savedLi.addClass("historyList card-body card");
-        citiesList.prepend(savedLi);
+        searchedCities.push(current); // updates new session string
+        savedLi.addClass("historyList card-body card"); // adds class to make list appear as buttons
+        citiesList.prepend(savedLi); // adds to the top
     }
-    }
-    else {
     }
   }
 
   function renderCities() {
     
-    citiesList.empty();
+    citiesList.empty(); // resets to prevent duplicates
 
     for (var newCity = 0; newCity < searchedCities.length; newCity++) {
       var indvCity = searchedCities[newCity];
 
-      var li = $("<li>" + indvCity + "</li>");
-      li.addClass("historyList card-body card");
-      citiesList.prepend(li);
+      var li = $("<li>" + indvCity + "</li>"); // sets list item
+      li.addClass("historyList card-body card"); // adds class to make list appears as buttons
+      citiesList.prepend(li); // adds to top of list
   }
   }
 

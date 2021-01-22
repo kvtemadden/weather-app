@@ -1,7 +1,9 @@
+/* aligns page title to centre */
 #title {
     text-align: center;
 }
 
+/* overwrites bootstrap class */
 .jumbotron {
     background-color: #203333;
     color: #fff;
@@ -9,67 +11,81 @@
     margin-bottom: 0;
 }
 
+/* sets sidebar styling */
 #sidebar {
     height: 100vh;
     background-color: #d8e6ea;
     padding: 2rem 1rem;
 }
 
+/* sets container width */
 .container {
     margin-left: 0;
     margin-right: 0;
     max-width: 99vw;
 }
 
+/* sets padding for uv index box */
 .bg-secondary {
 padding: 6px .8rem;
 }
 
+/* uv index good  */
 .bg-green {
     padding: 6px .8rem;
     background-color: rgb(138, 207, 70);
     }
 
+/* uv index ok */
 .bg-yellow {
     padding: 6px .8rem;
     background-color: rgb(217, 248, 42);
     }
 
+/* uv index medium */
 .bg-orange {
     padding: 6px .8rem;
     background-color: rgb(248, 183, 42);
     }
 
+/* uv index high */
 .bg-red {
     padding: 6px .8rem;
     background-color: rgb(238, 50, 50);
     }
 
+/* makes list appear as buttons */
 .historyList {
     list-style: none;
     cursor: pointer;
 }
 
+/* adds hover to list "buttons" */
 .historyList:hover {
     background: grey;
 }
 
+/* overwrites bootstrap padding */
 .card-body {
     padding: .7rem;
 }
 
+/* resets padding for list to align in centre */
 ul {
     padding-left: 0;
 }
 
+/* hides items on page */
 .hide {
     display: none;
 }
 
+/* shows items on page */
 .show {
     display: block;
 }
 
+/* jumbotron padding for above certain width */
 @media (min-width: 576px) {
 .jumbotron {
     padding: 2rem 2rem;
