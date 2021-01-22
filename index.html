@@ -26,13 +26,13 @@
                     <button type="button" class="col-2 btn btn-primary" id="search"><i class="fas fa-search"></i></button>
                 </form>
                 <div>
-                    <ul>
+                    <ul id="history">
                         
                     </ul>
                 </div>
             </aside>
             <section class="col-8 m-3">
-                <h3 id="how-to-use">Use the search bar on the left to search for the current weather forecast.</h3>
+                <h3 id="how-to-use" class="show">Use the search bar on the left to search for the current weather forecast.</h3>
                 <article class="card hide">
                 <div class="card-body">
                     <h2 class="card-title"><span id="main-title"></span><img id="currentIcon" src=""/></h2>
@@ -47,8 +47,16 @@
                     <div class="row">
                     <div class="card text-white bg-primary mb-3 mt-3 col mr-2" style="max-width: 18rem;">
                         <div class="card-body">
+                          <h5 class="card-title" id="day0"></h5>
+                          <img src="" id="day0-img"/>
+                          <p class="card-text">Temp: <span id="day0-t"></span></p>
+                          <p class="card-text">Humidity: <span id="day0-h"></span></p>
+                    </div>
+                    </div>
+                    <div class="card text-white bg-primary mb-3 mt-3 col mr-2" style="max-width: 18rem;">
+                        <div class="card-body">
                           <h5 class="card-title" id="day1"></h5>
-                          <i id="day1-img"></i>
+                          <img src="" id="day1-img"/>
                           <p class="card-text">Temp: <span id="day1-t"></span></p>
                           <p class="card-text">Humidity: <span id="day1-h"></span></p>
                     </div>
@@ -56,7 +64,7 @@
                     <div class="card text-white bg-primary mb-3 mt-3 col mr-2" style="max-width: 18rem;">
                         <div class="card-body">
                           <h5 class="card-title" id="day2"></h5>
-                          <i id="day2-img"></i>
+                          <img src="" id="day2-img"/>
                           <p class="card-text">Temp: <span id="day2-t"></span></p>
                           <p class="card-text">Humidity: <span id="day2-h"></span></p>
                     </div>
@@ -64,7 +72,7 @@
                     <div class="card text-white bg-primary mb-3 mt-3 col mr-2" style="max-width: 18rem;">
                         <div class="card-body">
                           <h5 class="card-title" id="day3"></h5>
-                          <i id="day3-img"></i>
+                          <img src="" id="day3-img"/>
                           <p class="card-text">Temp: <span id="day3-t"></span></p>
                           <p class="card-text">Humidity: <span id="day3-h"></span></p>
                     </div>
@@ -72,17 +80,9 @@
                     <div class="card text-white bg-primary mb-3 mt-3 col mr-2" style="max-width: 18rem;">
                         <div class="card-body">
                           <h5 class="card-title" id="day4"></h5>
-                          <i id="day4-img"></i>
+                          <img src="" id="day4-img"/>
                           <p class="card-text">Temp: <span id="day4-t"></span></p>
                           <p class="card-text">Humidity: <span id="day4-h"></span></p>
-                    </div>
-                    </div>
-                    <div class="card text-white bg-primary mb-3 mt-3 col mr-2" style="max-width: 18rem;">
-                        <div class="card-body">
-                          <h5 class="card-title" id="day5"></h5>
-                          <i id="day5-img"></i>
-                          <p class="card-text">Temp: <span id="day5-t"></span></p>
-                          <p class="card-text">Humidity: <span id="day5-h"></span></p>
                     </div>
                     </div>
                     
