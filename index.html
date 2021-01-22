@@ -17,6 +17,7 @@
     <header class="jumbotron">
         <h1 id="title">Weather Dashboard</h1>
     </header>
+    <!-- Sidebar with search form -->
     <div class="container">
         <div class="row">
             <aside class="col-3" id="sidebar">
@@ -26,13 +27,16 @@
                     <button type="button" class="col-2 btn btn-primary" id="search"><i class="fas fa-search"></i></button>
                 </form>
                 <div>
+                    <!-- Where search history appears -->
                     <ul id="history">
                         
                     </ul>
                 </div>
             </aside>
             <section class="col-8 m-3">
+                <!-- Information on how to use the search -->
                 <h3 id="how-to-use" class="show">Use the search bar on the left to search for the current weather forecast.</h3>
+                <!-- Main area of today's information -->
                 <article class="card hide">
                 <div class="card-body">
                     <h2 class="card-title"><span id="main-title"></span><img id="currentIcon" src=""/></h2>
@@ -42,6 +46,7 @@
                     <p class="card-text">UV index: <span class="badge bg-secondary" id="uv">--</span></p>
                  </div>
                 </article>
+                <!-- 5 day forecast information -->
                 <article class="mt-3 hide">
                     <h2>5-Day Forecast</h2>
                     <div class="row">
