@@ -158,6 +158,13 @@ $(document).on("click", "li", function (event) {
         iconOther = "http://openweathermap.org/img/w/" + response.list[day].weather[0].icon + ".png";
         x++;
 
+        for (var j = 0; j > searchedCities.length; j++) {
+          debugger;
+        if (j == searchedCities[j]) {
+          searchedCities.splice(j);
+        }
+        }
+
         var mainTitle = $("#day" + i);
         var tempDayInfo = $("#day" + i + "-t");
         var humidityDayInfo = $("#day" + i + "-h");
@@ -228,6 +235,13 @@ $(document).on("click", "li", function (event) {
 
   function saveSearch() {
     var cityName = $("#city-search").val(); //gets user input
+
+    for (var j = 0; j < searchedCities.length; j++) {
+    if (cityName == searchedCities[j]) {
+      searchedCities.splice(j, 1);
+    }
+    }
+
     if (searchedCities.length == 7) { 
       searchedCities.shift(); // maintains length of history to 7 options
     }
